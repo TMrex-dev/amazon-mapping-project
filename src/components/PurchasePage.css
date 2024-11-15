@@ -1,0 +1,149 @@
+/* src/components/PurchasePage.css */
+.purchase-page {
+    display: flex;
+    max-width: 1200px;
+    margin: auto;
+    padding: 20px;
+    gap: 20px;
+  }
+  
+  .image-gallery {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+  
+  .thumbnail-container {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+  }
+  
+  .thumbnail {
+    width: 50px;
+    cursor: pointer;
+  }
+  
+  .main-product-image {
+    width: 200px;
+    margin-top: 10px;
+  }
+  
+  .product-details {
+    flex: 2;
+    padding: 10px;
+  }
+  
+  .product-title {
+    font-size: 22px;
+    font-weight: bold;
+  }
+  
+  .product-rating {
+    font-size: 14px;
+    margin: 5px 0;
+  }
+  
+  .product-price {
+    color: #b12704;
+    font-size: 24px;
+    font-weight: bold;
+    margin-top: 10px;
+  }
+  
+  .shipping-info,
+  .stock-info {
+    font-size: 14px;
+    color: #555;
+    margin: 5px 0;
+  }
+  
+  .product-tabs {
+    display: flex;
+    gap: 10px;
+    margin-top: 20px;
+  }
+  
+  .tab {
+    padding: 10px;
+    border: 1px solid #ddd;
+    background-color: #eef3f7;
+    cursor: pointer;
+  }
+  
+  .tab:hover {
+    background-color: #e1ecf4;
+  }
+  
+  .purchase-panel {
+    flex: 1;
+    padding: 15px;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+  
+  .product-price-large {
+    color: #b12704;
+    font-size: 28px;
+    font-weight: bold;
+    margin-bottom: 10px;
+  }
+  
+  .quantity-section {
+    display: flex;
+    align-items: center;
+    margin-bottom: 10px;
+  }
+  
+  .quantity-input {
+    width: 50px;
+    padding: 5px;
+    font-size: 16px;
+    margin-left: 5px;
+  }
+  
+  .add-to-cart-button,
+  .buy-now-button {
+    width: 100%;
+    padding: 10px;
+    font-size: 16px;
+    font-weight: bold;
+    margin: 5px 0;
+    cursor: pointer;
+    border: none;
+  }
+  
+  .add-to-cart-button {
+    background-color: #ffd814;
+  }
+  
+  .buy-now-button {
+    background-color: #ffa41c;
+  }
+  
+  .shipping-info,
+  .return-info {
+    font-size: 14px;
+    color: #333;
+    text-align: center;
+    margin: 10px 0;
+  }
+  
+  .return-info {
+    display: flex;
+    align-items: center;
+    font-size: 14px;
+  }
+  
+  .add-to-list-button {
+    width: 100%;
+    padding: 8px;
+    background-color: #f0f2f2;
+    border: 1px solid #ccc;
+    cursor: pointer;
+  }
+  
