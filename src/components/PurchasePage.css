@@ -281,14 +281,15 @@
 
 .sticky-nav {
   position: fixed;
-  bottom: 0;
-  left: 0;
-  width: 100%;
-  background-color: #fff;
-  border-top: 1px solid #ddd;
+  bottom: 10px;
+  left: 50%;
+  transform: translateX(-50%);
+  background-color: rgba(255, 255, 255, 0.9);
+  border-radius: 25px;
   display: flex;
   justify-content: space-around;
-  padding: 10px 0;
+  padding: 8px 10px;
+  box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.2);
   z-index: 1000;
 }
 
@@ -296,13 +297,20 @@
   background-color: #0073e6;
   color: white;
   border: none;
-  border-radius: 4px;
-  padding: 10px 20px;
+  border-radius: 20px;
+  padding: 10px 15px;
+  margin: 0 5px;
   cursor: pointer;
   font-size: 14px;
-  transition: background-color 0.3s;
+  transition: all 0.3s;
 }
 
 .sticky-nav button:hover {
   background-color: #005bb5;
+}
+
+.sticky-nav button.active {
+  background-color: red;  /* Red for active section */
+  color: white;
+  box-shadow: 0px 0px 10px red;
 }

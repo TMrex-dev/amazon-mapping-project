@@ -8,6 +8,7 @@ import image4 from "../images/image4.jpg";
 function PurchasePage() {
   const [quantity, setQuantity] = useState(1);
   const [isHolding, setIsHolding] = useState(false);
+  const [activeSection, setActiveSection] = useState("purchase");
   const [holdProgress, setHoldProgress] = useState(0);
   const images = [image1, image2, image3, image4];
   const [currentIndex, setCurrentIndex] = useState(0);
@@ -47,6 +48,7 @@ function PurchasePage() {
     setIsHolding(false);
     setHoldProgress(0);
   };
+  
 
   useEffect(() => {
     let interval;
@@ -67,12 +69,31 @@ function PurchasePage() {
     return () => clearInterval(interval);
   }, [isHolding]);
 
+  const handleScroll = () => {
+    const sections = ["purchase", "about", "related", "questions", "reviews"];
+    for (const section of sections) {
+      const element = document.getElementById(section);
+      if (element) {
+        const rect = element.getBoundingClientRect();
+        if (rect.top <= window.innerHeight / 2 && rect.bottom > window.innerHeight / 2) {
+          setActiveSection(section);
+          break;
+        }
+      }
+    }
+  };
+
   const scrollToSection = (id) => {
     const section = document.getElementById(id);
     if (section) {
       section.scrollIntoView({ behavior: "smooth" });
     }
   };
+
+  useEffect(() => {
+    window.addEventListener("scroll", handleScroll);
+    return () => window.removeEventListener("scroll", handleScroll);
+  }, []);
 
   return (
     <div>
@@ -207,11 +228,36 @@ function PurchasePage() {
 
       {/* Sticky Navigation Bar */}
       <nav className="sticky-nav">
-        <button onClick={() => scrollToSection("purchase")}>Purchase</button>
-        <button onClick={() => scrollToSection("about")}>About</button>
-        <button onClick={() => scrollToSection("related")}>Related</button>
-        <button onClick={() => scrollToSection("questions")}>Questions</button>
-        <button onClick={() => scrollToSection("reviews")}>Reviews</button>
+        <button
+          onClick={() => scrollToSection("purchase")}
+          className={activeSection === "purchase" ? "active" : ""}
+        >
+          Purchase
+        </button>
+        <button
+          onClick={() => scrollToSection("about")}
+          className={activeSection === "about" ? "active" : ""}
+        >
+          About
+        </button>
+        <button
+          onClick={() => scrollToSection("related")}
+          className={activeSection === "related" ? "active" : ""}
+        >
+          Related
+        </button>
+        <button
+          onClick={() => scrollToSection("questions")}
+          className={activeSection === "questions" ? "active" : ""}
+        >
+          Questions
+        </button>
+        <button
+          onClick={() => scrollToSection("reviews")}
+          className={activeSection === "reviews" ? "active" : ""}
+        >
+          Reviews
+        </button>
       </nav>
     </div>
   );
