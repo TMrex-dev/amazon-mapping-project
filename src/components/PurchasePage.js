@@ -4,6 +4,8 @@ import image1 from "../images/image1.jpg";
 import image2 from "../images/image2.jpg";
 import image3 from "../images/image3.jpg";
 import image4 from "../images/image4.jpg";
+import ReviewFilter from "./ReviewFilter";
+import RelatedItems from "./RelatedItems";
 
 
 
@@ -15,6 +17,27 @@ function PurchasePage() {
   const [holdProgress, setHoldProgress] = useState(0);
   const images = [image1, image2, image3, image4];
   const [currentIndex, setCurrentIndex] = useState(0);
+  const reviews = [
+    { title: "Great product!", text: "Loved it!", rating: 5 },
+    { title: "Not bad", text: "Good value for money.", rating: 4 },
+    { title: "Could be better", text: "Had some issues.", rating: 3 },
+    { title: "Not great", text: "Some issues.", rating: 2},
+    { title: "Terrible", text: "Would not recommend.", rating: 1}
+  ];
+
+  const relatedItems = [
+    { id: 1, image: "https://via.placeholder.com/200", title: "Item 1", price: 29.99 },
+    { id: 2, image: "https://via.placeholder.com/200", title: "Item 2", price: 49.99 },
+    { id: 3, image: "https://via.placeholder.com/200", title: "Item 3", price: 39.99 },
+    { id: 4, image: "https://via.placeholder.com/200", title: "Item 4", price: 24.99 },
+    { id: 5, image: "https://via.placeholder.com/200", title: "Item 5", price: 59.99 },
+    { id: 6, image: "https://via.placeholder.com/200", title: "Item 6", price: 44.99 },
+    { id: 7, image: "https://via.placeholder.com/200", title: "Item 7", price: 43.99 },
+    { id: 8, image: "https://via.placeholder.com/200", title: "Item 8", price: 49.99 },
+    { id: 9, image: "https://via.placeholder.com/200", title: "Item 9", price: 69.99 },
+    // Add more items as needed
+  ];
+  
 
   useEffect(() => {
     // DOM manipulation for drag-and-drop functionality
@@ -178,12 +201,12 @@ function PurchasePage() {
         </div>
         <div className="image-gallery">
           <div className="main-image-container">
-            {currentIndex > 0 && (
+            {/* {currentIndex > 0 && (
               <button
                 className="nav-button left"
                 onClick={handlePrev}
               ></button>
-            )}
+            )} */}
 
             <img
               src={images[currentIndex]}
@@ -191,12 +214,12 @@ function PurchasePage() {
               className="main-product-image"
             />
 
-            {currentIndex < images.length - 1 && (
+            {/* {currentIndex < images.length - 1 && (
               <button
                 className="nav-button right"
                 onClick={handleNext}
               ></button>
-            )}
+            )} */}
             
           </div>
 
@@ -240,26 +263,49 @@ function PurchasePage() {
       {/* About This Item Section */}
       <section id="about" className="about-this-item">
         <h2>About This Item</h2>
-        <p>
-          This Dell Vostro desktop offers high performance for your business
-          needs with a reliable Intel processor and sleek design. Great for
-          multitasking and storing important files securely.
-        </p>
+        <p>This Dell Vostro desktop offers high performance for your business needs with a reliable Intel processor and sleek design.</p>
+        <p>Great for multitasking and storing important files securely.</p>
+        <p>CPU: 12th Gen Intel Core i3-12100 (12 MB cache, 4 cores, 8 threads, 3.30 GHz to 4.30 GHz Turbo).</p>  
+        <p>Intel UHD Graphics 730.</p>  
+        <p>Note: Optical drive not included ▌Memory: 16GB DDR4 RAM; Hard Drive: 512GB M.2 PCIe NVMe SSD. Optical Drive: None.</p> 
+        <p>Intel(R) Wi-Fi 6 AX201, 2x2, 8 02.11ax, Bluetooth(R) wireless card</p>
+        <p>Front: 2 USB 3.2 Gen 1 ports, 2 USB 2.0 ports, 1 Global headset jack; Rear: 2 USB 2.0 ports, 2 USB 3.2 Gen 1 ports, 1 Audio line-out port, 1 HDMI 1.4b port, HDMI 1.4 Maximum resolution supported over HDMI is 1920x1080 @60Hz. No 4K/2K output, 1 DisplayPort 1.4, 1 RJ-45 Ethernet port, 1 AC power-supply port.</p>
+        <p>Intel(R) Wi-Fi 6 AX201, 2x2, 8 02.11ax, Bluetooth(R) wireless card; Front: 2 USB 3.2 Gen 1 ports, 2 USB 2.0 ports, 1 Global headset jack; Rear: 2 USB 2.0 ports, 2 USB 3.2 Gen 1 ports, 1 Audio line-out port, 1 HDMI 1.4b port, HDMI 1.4 (Maximum resolution supported over HDMI is 1920x1080 @60Hz. No 4K/2K output), 1 DisplayPort 1.4, 1 RJ-45 Ethernet port, 1 AC power-supply port. </p> 
+        <p>Windows 11 Pro, English. Dell Multimedia Keyboard-KB216 Black (English) and Dell Optical Mouse (Black) included. Black with Silver mesh. USISNIC </p>
+
       </section>
 
       {/* Related Items Section */}
-      <section id="related" className="related-items">
-        <h2>Related Items</h2>
-        <ul>
-          <li>Dell Inspiron Desktop</li>
-          <li>HP EliteDesk Business Desktop</li>
-          <li>Lenovo ThinkCentre M720</li>
-        </ul>
-      </section>
+      <section id="related" className="related">
+        <RelatedItems relatedItems={relatedItems} />
+      </section>     
+
+ 
+
 
       {/* Questions Section */}
       <section id="questions" className="questions">
         <h2>Customer Questions & Answers</h2>
+        <p>
+          <strong>Q:</strong> Does this desktop come with a monitor? <br />
+          <strong>A:</strong> No, the monitor is sold separately.
+        </p>
+        <p>
+          <strong>Q:</strong> Does this desktop come with a monitor? <br />
+          <strong>A:</strong> No, the monitor is sold separately.
+        </p>
+        <p>
+          <strong>Q:</strong> Does this desktop come with a monitor? <br />
+          <strong>A:</strong> No, the monitor is sold separately.
+        </p>
+        <p>
+          <strong>Q:</strong> Does this desktop come with a monitor? <br />
+          <strong>A:</strong> No, the monitor is sold separately.
+        </p>
+        <p>
+          <strong>Q:</strong> Does this desktop come with a monitor? <br />
+          <strong>A:</strong> No, the monitor is sold separately.
+        </p>
         <p>
           <strong>Q:</strong> Does this desktop come with a monitor? <br />
           <strong>A:</strong> No, the monitor is sold separately.
@@ -273,9 +319,7 @@ function PurchasePage() {
       {/* Reviews Section */}
       <section id="reviews" className="reviews">
         <h2>Customer Reviews</h2>
-        <p>"Great desktop for office work!" - ⭐⭐⭐⭐</p>
-        <p>"Fast and reliable, but a bit noisy." - ⭐⭐⭐⭐</p>
-        <p>"Worth the price, highly recommend!" - ⭐⭐⭐⭐⭐</p>
+        <ReviewFilter reviews={reviews} />
       </section>
 
       {/* Sticky Navigation Bar */}
