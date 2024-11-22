@@ -5,6 +5,9 @@ import image2 from "../images/image2.jpg";
 import image3 from "../images/image3.jpg";
 import image4 from "../images/image4.jpg";
 
+
+
+
 function PurchasePage() {
   const [quantity, setQuantity] = useState(1);
   const [isHolding, setIsHolding] = useState(false);
@@ -12,6 +15,57 @@ function PurchasePage() {
   const [holdProgress, setHoldProgress] = useState(0);
   const images = [image1, image2, image3, image4];
   const [currentIndex, setCurrentIndex] = useState(0);
+
+  useEffect(() => {
+    // DOM manipulation for drag-and-drop functionality
+    const previewImage = document.querySelector('.main-product-image');
+    const shoppingCart = document.querySelector('.shopping-cart');
+
+    if (previewImage && shoppingCart) {
+      // Make the preview image draggable
+      previewImage.setAttribute('draggable', true);
+      previewImage.classList.add('draggable');
+
+      // Handle drag events
+      const handleDragStart = (event) => {
+        event.dataTransfer.setData('text/plain', event.target.id);
+      };
+
+      const handleDragOver = (event) => {
+        event.preventDefault();
+        shoppingCart.style.borderColor = '#000'; // Visual feedback
+      };
+
+      const handleDragLeave = () => {
+        shoppingCart.style.borderColor = '#bbb';
+      };
+
+      const handleDrop = (event) => {
+        event.preventDefault();
+        shoppingCart.style.borderColor = '#bbb';
+        const draggedImageId = event.dataTransfer.getData('text/plain');
+        const draggedImage = document.getElementById(draggedImageId);
+
+        if (draggedImage) {
+          alert('Image added to cart!');
+        }
+      };
+
+      // Add event listeners
+      previewImage.addEventListener('dragstart', handleDragStart);
+      shoppingCart.addEventListener('dragover', handleDragOver);
+      shoppingCart.addEventListener('dragleave', handleDragLeave);
+      shoppingCart.addEventListener('drop', handleDrop);
+
+      // Cleanup function
+      return () => {
+        previewImage.removeEventListener('dragstart', handleDragStart);
+        shoppingCart.removeEventListener('dragover', handleDragOver);
+        shoppingCart.removeEventListener('dragleave', handleDragLeave);
+        shoppingCart.removeEventListener('drop', handleDrop);
+      };
+    }
+  }, []); 
 
   const holdDuration = 2000; // Duration for holding the add-to-cart button
 
@@ -48,7 +102,7 @@ function PurchasePage() {
     setIsHolding(false);
     setHoldProgress(0);
   };
-  
+ 
 
   useEffect(() => {
     let interval;
@@ -112,6 +166,16 @@ function PurchasePage() {
 
       {/* Purchase Section */}
       <section id="purchase" className="purchase-page">
+        <div className="product-details">
+          <h1 className="product-title">
+            Dell Vostro 3910 Full Size Tower Business Desktop
+          </h1>
+          <div className="product-rating">4.4 ⭐ (36 ratings)</div>
+
+          <p className="shipping-info">$246.70 Shipping & Import Fees to Ireland</p>
+          <p className="stock-info">Only 5 left in stock - order soon.</p>
+         
+        </div>
         <div className="image-gallery">
           <div className="main-image-container">
             {currentIndex > 0 && (
@@ -133,6 +197,7 @@ function PurchasePage() {
                 onClick={handleNext}
               ></button>
             )}
+            
           </div>
 
           <div className="thumbnail-container">
@@ -150,15 +215,7 @@ function PurchasePage() {
           </div>
         </div>
 
-        <div className="product-details">
-          <h1 className="product-title">
-            Dell Vostro 3910 Full Size Tower Business Desktop
-          </h1>
-          <div className="product-rating">4.4 ⭐ (36 ratings)</div>
-          <p className="product-price">$629.00</p>
-          <p className="shipping-info">$246.70 Shipping & Import Fees to Ireland</p>
-          <p className="stock-info">Only 5 left in stock - order soon.</p>
-        </div>
+          
 
         <div className="purchase-panel">
           <p className="product-price-large">$629.00</p>
@@ -173,14 +230,9 @@ function PurchasePage() {
               min="1"
             />
           </div>
-          <button
-            className="add-to-cart-button"
-            onMouseDown={handleMouseDown}
-            onMouseUp={handleMouseUp}
-            onMouseLeave={handleMouseLeave}
-          >
-            Add to Cart
-          </button>
+          <div className="shopping-cart">
+           </div>
+           <p className="cart-instruction">Drag and drop image to add to cart</p>
           <button className="buy-now-button">Buy Now</button>
         </div>
       </section>
@@ -264,3 +316,5 @@ function PurchasePage() {
 }
 
 export default PurchasePage;
+
+
