@@ -7,41 +7,52 @@
     gap: 20px;
   }
   
-  .header {
+.header {
     display: flex;
-    justify-content: space-between;
     align-items: center;
     background-color: #232f3e;
     color: white;
-    padding: 10px 20px;
+    padding: 10px 10px;
+    position: relative; /* Added for absolute positioning of search bar */
+    padding: 20px;
 }
 
 .header-logo {
     font-size: 24px;
     font-weight: bold;
     color: white;
+    min-width: max-content;
 }
 
 .search-bar {
-    flex: 1;
-    margin: 0 20px;
+    position: absolute; /* Position in center of header */
+    left: 50%;
+    transform: translateX(-50%);
+    width: 100%; /* Control width of search bar */
+    max-width: 1000px;
 }
 
 .search-input {
     width: 100%;
-    padding: 8px;
+    padding: 10px 40px 10px 15px;
     border: none;
     border-radius: 4px;
+    font-size: 14px;
 }
 
-.search-button {
-    padding: 8px 12px;
-    background-color: #febd69;
-    border: none;
-    border-radius: 4px;
+.search-icon {
+    position: absolute;
+    right: 12px;
+    top: 50%;
+    transform: translateY(-50%);
+    color: #666;
     cursor: pointer;
+    transition: color 0.2s ease;
 }
 
+.search-icon:hover {
+    color: #232f3e;
+}
 .image-gallery {
   display: flex;
   flex-direction: column;
@@ -524,4 +535,162 @@
   width: 50px; /* Set size for empty buttons */
   height: 50px; /* Set height for empty buttons */
 }
+
+.calendar-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center; /* Centers the calendar and date selector */
+  margin: 20px; /* Adds spacing around the component */
+}
+
+.calendar-header {
+  text-align: center;
+}
+
+.flatpickr-calendar {
+  margin-top: 50px;
+  margin: 0 auto; /* Centers the Flatpickr calendar */
+}
+
+.product-options {
+  margin: 20px 0;
+  padding: 20px;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  background-color: #f8f8f8;
+}
+
+
+
+.option-section {
+  margin-bottom: 20px;
+  padding-bottom: 20px;
+  border-bottom: 1px solid #ddd;
+}
+
+.option-section:last-child {
+  border-bottom: none;
+  margin-bottom: 0;
+  padding-bottom: 0;
+}
+
+.option-section h3 {
+  font-size: 16px;
+  margin-bottom: 10px;
+  color: #333;
+}
+
+.variation-buttons {
+  display: flex;
+  gap: 10px;
+  flex-wrap: wrap;
+}
+
+.variation-button {
+  padding: 8px 16px;
+  border: 2px solid #ddd;
+  border-radius: 4px;
+  background-color: white;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.variation-button.selected {
+  border-color: #e77600;
+  box-shadow: 0 0 3px 2px rgb(228 121 17 / 50%);
+}
+
+.variation-button:hover {
+  background-color: #f0f0f0;
+}
+
+.quantity-control {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.quantity-btn {
+  width: 30px;
+  height: 30px;
+  border: 1px solid #ddd;
+  background-color: #f0f0f0;
+  border-radius: 4px;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 18px;
+}
+
+.quantity-btn:hover {
+  background-color: #e4e4e4;
+}
+
+.quantity-input {
+  width: 60px;
+  height: 30px;
+  text-align: center;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+}
+
+.delivery-date-picker {
+  padding: 8px;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+  width: 200px;
+}
+
+/* Update existing styles */
+.product-details {
+  flex: 2;
+  padding: 20px;
+  background-color: white;
+  border-radius: 8px;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+}
+
+
+.variation-buttons {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 15px;
+  margin-top: 10px;
+}
+
+.variation-button {
+  display: flex;
+  flex-direction: column;
+  padding: 15px;
+  border: 2px solid #ddd;
+  border-radius: 8px;
+  background-color: white;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  text-align: left;
+  min-height: 80px;
+}
+
+.variation-button:hover {
+  border-color: #888;
+  background-color: #f8f8f8;
+}
+
+.variation-button.selected {
+  border-color: #e77600;
+  box-shadow: 0 0 3px 2px rgb(228 121 17 / 50%);
+}
+
+.variation-name {
+  font-weight: bold;
+  margin-bottom: 5px;
+  color: #0F1111;
+}
+
+.variation-description {
+  font-size: 0.9em;
+  color: #565959;
+}
+
 

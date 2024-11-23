@@ -4,14 +4,20 @@ import image1 from "../images/image1.jpg";
 import image2 from "../images/image2.jpg";
 import image3 from "../images/image3.jpg";
 import image4 from "../images/image4.jpg";
+import { Search } from "lucide-react";
+import DatePicker from "react-datepicker";
+import "react-datepicker/dist/react-datepicker.css";
 import ReviewFilter from "./ReviewFilter";
 import RelatedItems from "./RelatedItems";
+import DeliveryCalendar from "./DeliveryCalendar";
+
 
 
 
 
 function PurchasePage() {
   const [quantity, setQuantity] = useState(1);
+  const [deliveryDate, setDeliveryDate] = useState(new Date());
   const [isHolding, setIsHolding] = useState(false);
   const [activeSection, setActiveSection] = useState("purchase");
   const [holdProgress, setHoldProgress] = useState(0);
@@ -23,6 +29,31 @@ function PurchasePage() {
     { title: "Could be better", text: "Had some issues.", rating: 3 },
     { title: "Not great", text: "Some issues.", rating: 2},
     { title: "Terrible", text: "Would not recommend.", rating: 1}
+  ];
+
+  const [selectedVariation, setSelectedVariation] = useState('base');
+
+  const variations = [
+    {
+      id: 'base',
+      name: 'Base Model',
+      description: 'i3-12100, 16GB RAM, 512GB SSD'
+    },
+    {
+      id: 'pro',
+      name: 'Professional',
+      description: 'i5-12400, 32GB RAM, 1TB SSD'
+    },
+    {
+      id: 'creator',
+      name: 'Creator Edition',
+      description: 'i7-12700, 32GB RAM, 1TB SSD + 2TB HDD'
+    },
+    {
+      id: 'ultimate',
+      name: 'Ultimate',
+      description: 'i9-12900, 64GB RAM, 2TB SSD + 4TB HDD'
+    }
   ];
 
   const relatedItems = [
@@ -38,6 +69,9 @@ function PurchasePage() {
     // Add more items as needed
   ];
   
+  const handleDateChange = (date) => {
+    setDeliveryDate(date);
+  };
 
   useEffect(() => {
     // DOM manipulation for drag-and-drop functionality
@@ -183,7 +217,7 @@ function PurchasePage() {
             placeholder="Search for products"
             className="search-input"
           />
-          <button className="search-button">Search</button>
+          <Search className="search-icon" size={20} />
         </div>
       </header>
 
@@ -197,7 +231,49 @@ function PurchasePage() {
 
           <p className="shipping-info">$246.70 Shipping & Import Fees to Ireland</p>
           <p className="stock-info">Only 5 left in stock - order soon.</p>
-         
+          <div className="product-options">
+            <div className="option-section">
+              <h3>Select Model</h3>
+              <div className="variation-buttons">
+                {variations.map((variation) => (
+                  <button
+                    key={variation.id}
+                    className={`variation-button ${selectedVariation === variation.id ? 'selected' : ''}`}
+                    onClick={() => setSelectedVariation(variation.id)}
+                  >
+                    <div className="variation-name">{variation.name}</div>
+                    <div className="variation-description">{variation.description}</div>
+                  </button>
+                ))}
+              </div>
+            </div>
+
+            <div className="option-section">
+              <h3>Quantity</h3>
+              <div className="quantity-section">
+                <label htmlFor="quantity"></label>
+                <input
+                  type="number"
+                  id="quantity"
+                  value={quantity}
+                  onChange={handleQuantityChange}
+                  className="quantity-input"
+                  min="1"
+                />
+              </div>
+            </div>
+
+            <div className="option-section">
+              <h3>Delivery Date</h3>
+              <DeliveryCalendar
+                selected={deliveryDate}
+                onChange={handleDateChange}
+                dateFormat="MMMM d, yyyy"
+                minDate={new Date()} // Prevent selecting past dates
+                className="date-picker-input"
+              />
+            </div>
+          </div>         
         </div>
         <div className="image-gallery">
           <div className="main-image-container">
@@ -242,17 +318,6 @@ function PurchasePage() {
 
         <div className="purchase-panel">
           <p className="product-price-large">$629.00</p>
-          <div className="quantity-section">
-            <label htmlFor="quantity">Quantity:</label>
-            <input
-              type="number"
-              id="quantity"
-              value={quantity}
-              onChange={handleQuantityChange}
-              className="quantity-input"
-              min="1"
-            />
-          </div>
           <div className="shopping-cart">
            </div>
            <p className="cart-instruction">Drag and drop image to add to cart</p>
